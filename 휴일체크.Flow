@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<FLOWSCRIPT>
+  <FLOWGROUP>﻿<XtraSerializer version="19.1.5.0">
+  <Items>
+    <Item1 ItemKind="DiagramRoot" PageSize="1123,794" SelectedStencils="BasicShapes">
+      <Children>
+        <Item1 Position="250,100" Size="100,50" Background="#FFCD5C5C" Shape="BasicFlowchartShapes.StartEnd" Content="START" ItemKind="DiagramShape" />
+        <Item2 CanEdit="false" StrokeThickness="3" EndArrow="IndentedFilledArrow" BeginItemPointIndex="2" EndItemPointIndex="0" Points="(Empty)" Type="Curved" ItemKind="DiagramConnector" BeginItem="0" EndItem="7" BeginPoint="300,150" EndPoint="300,200" />
+        <Item3 CanEdit="false" TextAlignment="Center" Foreground="#FFFF69B4" StrokeThickness="3" Stroke="#FFFF69B4" Tag_type="System.Int32" Tag="2" EndArrow="IndentedFilledArrow" BeginItemPointIndex="1" EndItemPointIndex="3" Points="(Empty)" Type="Curved" Content="_TASKRESULT == false" ItemKind="DiagramConnector" BeginItem="7" EndItem="5" BeginPoint="350,225" EndPoint="490,225" />
+        <Item4 Position="250,660" Size="100,50" Background="#FF696969" Shape="SDLDiagramShapes.Terminator" Content="TERMINATE" ItemKind="DiagramShape" />
+        <Item5 CanEdit="false" TextAlignment="Center" Foreground="#FF00008B" StrokeThickness="3" Stroke="#FF00008B" Tag_type="System.Int32" Tag="0" EndArrow="IndentedFilledArrow" BeginItemPointIndex="2" EndItemPointIndex="1" Points="540,685" Type="Curved" Content="" ItemKind="DiagramConnector" BeginItem="5" EndItem="3" BeginPoint="540,250" EndPoint="350,685" />
+        <Item6 Position="490,200" Size="100,50" Background="#FF008B8B" Foreground="#FFFFFFFF" CustomStyleId_type="System.String" CustomStyleId="FlowItemScript" ItemKind="FlowItem_Script" Title="SCRIPT" ScriptCode="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public bool FlowItem_Script()&#xD;&#xA;	{&#xD;&#xA;		_SERVERCOMMENT = &quot;휴일 실행&quot;;&#xD;&#xA;		return true;&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" Reference="" />
+        <Item7 CanEdit="false" TextAlignment="Center" Foreground="#FF7B68EE" StrokeThickness="3" Stroke="#FF7B68EE" Tag_type="System.Int32" Tag="1" EndArrow="IndentedFilledArrow" BeginItemPointIndex="2" EndItemPointIndex="0" Points="(Empty)" Type="Curved" Content="_TASKRESULT == true" ItemKind="DiagramConnector" BeginItem="7" EndItem="3" BeginPoint="300,250" EndPoint="300,660" />
+        <Item8 Position="250,200" Size="100,50" Background="#FF008B8B" Foreground="#FFFFFFFF" CustomStyleId_type="System.String" CustomStyleId="FlowItemScript" ItemKind="FlowItem_Script" Title="휴일체크" ScriptCode="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;using System.Globalization;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public bool FlowItem_Script()&#xD;&#xA;	{&#xD;&#xA;		//기본 양력 휴일&#xD;&#xA;		string solarHoliday = &quot;0101,0301,0505,0606,0815,1003,1009,1225&quot;;&#xD;&#xA;		&#xD;&#xA;		//기본 음력 휴일&#xD;&#xA;		string lunarHoliday = &quot;1231,0101,0102,0408,0814,0815,0816&quot;;&#xD;&#xA;		&#xD;&#xA;		string solarToday = DateTime.Now.ToString(&quot;MMdd&quot;);&#xD;&#xA;		string lunarToday = ToLunarDate();&#xD;&#xA;		&#xD;&#xA;		//토, 일요일 업무 수행 금지&#xD;&#xA;		if ( DateTime.Now.DayOfWeek == DayOfWeek.Sunday ||&#xD;&#xA;		    	DateTime.Now.DayOfWeek == DayOfWeek.Saturday ) &#xD;&#xA;		{	&#xD;&#xA;			return false;&#xD;&#xA;		}&#xD;&#xA;		&#xD;&#xA;		//기본 양력 휴일 업무 수행 금지&#xD;&#xA;		if ( solarHoliday.Contains(solarToday) ) &#xD;&#xA;		{	&#xD;&#xA;			return false;&#xD;&#xA;		}&#xD;&#xA;		&#xD;&#xA;		//기본 음력 휴일 업무 수행 금지&#xD;&#xA;		if ( lunarHoliday.Contains(lunarToday) ) &#xD;&#xA;		{	&#xD;&#xA;			return false;&#xD;&#xA;		}&#xD;&#xA;		&#xD;&#xA;		return true;&#xD;&#xA;	}&#xD;&#xA;	&#xD;&#xA;	public string ToLunarDate() { &#xD;&#xA;		DateTime d = DateTime.Now;&#xD;&#xA;		KoreanLunisolarCalendar klc = new KoreanLunisolarCalendar(); &#xD;&#xA;		&#xD;&#xA;		int _y = klc.GetYear(d);&#xD;&#xA;		int _m = klc.GetMonth(d);&#xD;&#xA;	&#xD;&#xA;		//윤년이면&#xD;&#xA;		if ( klc.GetMonthsInYear(_y) &gt; 12 ) &#xD;&#xA;		{	&#xD;&#xA;			//윤달보다 크면 -1&#xD;&#xA;			if ( _m &gt;= klc.GetLeapMonth(_y) ) &#xD;&#xA;			{	&#xD;&#xA;				_m--;&#xD;&#xA;			}&#xD;&#xA;		}&#xD;&#xA;			&#xD;&#xA;		&#xD;&#xA;		DateTime _d = new DateTime(_y, _m, klc.GetDayOfMonth(d));&#xD;&#xA;&#xD;&#xA;		return _d.ToString(&quot;MMdd&quot;); &#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" Reference="" />
+      </Children>
+    </Item1>
+  </Items>
+</XtraSerializer></FLOWGROUP>
+  <VARIABLES>
+    <VARIABLE NAME="solarHolidayList" TYPE="List&lt;string&gt;" DEFAULT="" DESCRIPTION="" />
+    <VARIABLE NAME="lunarHolidayList" TYPE="List&lt;string&gt;" DEFAULT="" DESCRIPTION="" />
+    <VARIABLE NAME="solarHolidays" TYPE="System.Collections.Hashtable" DEFAULT="" DESCRIPTION="" />
+    <VARIABLE NAME="lunarHolidays" TYPE="System.Collections.Hashtable" DEFAULT="" DESCRIPTION="" />
+  </VARIABLES>
+  <DATAS />
+</FLOWSCRIPT>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<TASKSCRIPT PACING_TIME="0" EVENT_GAP_TIME="0">
+  <TASKGROUP TYPE="TRANSACTION">
+    <EVENTLISTS KEY="ecee2b5d-64ee-4775-85d0-2b69425fe6e1" NAME="Start">
+      <EVENT KEY="beb61f1c-1263-41de-84ef-0177bef0ec84" EVENT_NAME="Custom Module Item" EVENT_TYPE="16" CUSTOM_KEY="31b280fa-dc4e-45fb-b913-eaf11e3a16eb" />
+      <EVENT KEY="2db05f9a-0120-4729-8cc9-eb82de4197a8" EVENT_NAME="Custom Module Item" EVENT_TYPE="16" CUSTOM_KEY="9734d326-aee5-49c3-9c31-91b03837898b" />
+    </EVENTLISTS>
+  </TASKGROUP>
+  <TASKGROUP TYPE="CUSTOM">
+    <EVENTLISTS KEY="31b280fa-dc4e-45fb-b913-eaf11e3a16eb" NAME="폴더 초기화">
+      <EVENT KEY="753f092b-013c-4248-b5ac-0aa19f9e81d6" EVENT_NAME="Directory &amp; File Exist" EVENT_TYPE="171" STOPIFERR="0" POST_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PostRun()&#xD;&#xA;	{&#xD;&#xA;		&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" PRE_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PreRun(EvPPEntry_DirectoryFileExist EntryData)&#xD;&#xA;	{&#xD;&#xA;		string tYear = DateTime.Now.ToString(&quot;yyyy&quot;);&#xD;&#xA;		string tMon = DateTime.Now.ToString(&quot;MM&quot;);&#xD;&#xA;		string tDay = DateTime.Now.ToString(&quot;dd&quot;);&#xD;&#xA;		&#xD;&#xA;		EntryData.CheckPath = @&quot;C:\RPA_Project\Workspace\09.세금계산서\&quot; + tYear + @&quot;\&quot; + tMon + @&quot;\&quot; + tDay;&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" />
+      <EVENT KEY="2077fd11-7ebf-4933-b35b-9977f8a79023" EVENT_NAME="IF" EVENT_TYPE="12" SCRIPT_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public bool IF_Code()&#xD;&#xA;	{&#xD;&#xA;		if ( !_RESULT )&#xD;&#xA;		{ &#xD;&#xA;			return true;&#xD;&#xA;		}&#xD;&#xA;		return false;&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;">
+        <EVENT KEY="847a682c-0cd8-41ab-939e-d5e76a821606" EVENT_NAME="Directory Create" EVENT_TYPE="170" STOPIFERR="1" PRE_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PreRun(EvPPEntry_DirectoryCreate EntryData)&#xD;&#xA;	{&#xD;&#xA;		string tYear = DateTime.Now.ToString(&quot;yyyy&quot;);&#xD;&#xA;		string tMon = DateTime.Now.ToString(&quot;MM&quot;);&#xD;&#xA;		string tDay = DateTime.Now.ToString(&quot;dd&quot;);&#xD;&#xA;		&#xD;&#xA;		EntryData.CreateDirectoryPath = @&quot;C:\RPA_Project\Workspace\09.세금계산서\&quot; + tYear + @&quot;\&quot; + tMon + @&quot;\&quot; + tDay;&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" />
+      </EVENT>
+    </EVENTLISTS>
+    <EVENTLISTS KEY="9734d326-aee5-49c3-9c31-91b03837898b" NAME="프로세스 초기화">
+      <EVENT KEY="3e1fe632-561e-41c1-89c9-f5cbd511eea2" EVENT_NAME="&lt;WIN+D&gt;" EVENT_TYPE="20" ISENCRYPTED="0" TYPEING_MODE="0" TYPEING_DELAY="0" USE_HW="0" TYPEING_TEXT="&lt;WIN+D&gt;" />
+      <EVENT KEY="d9a65d09-25de-451b-a140-648a4fc2a8d0" EVENT_NAME="Process Kill" EVENT_TYPE="24" STOPIFERR="0" KILL_PROCESS="" PRE_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PreRun(EvPPEntry_ProcessKill EntryData)&#xD;&#xA;	{&#xD;&#xA;		EntryData.KillByProcessName = &quot;Angkor.Ylw.Main.MainWin45.exe&quot;;&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" />
+      <EVENT KEY="1277dd59-f001-4d51-8f4e-4f0f2eb604dc" EVENT_NAME="Process Kill" EVENT_TYPE="24" STOPIFERR="0" KILL_PROCESS="iexplore.exe" />
+      <EVENT KEY="b7e22c18-2133-4f90-ba35-e37f900fb357" EVENT_NAME="Process Kill" EVENT_TYPE="24" STOPIFERR="0" KILL_PROCESS="" PRE_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PreRun(EvPPEntry_ProcessKill EntryData)&#xD;&#xA;	{&#xD;&#xA;		EntryData.KillByProcessName = &quot;OUTLOOK.EXE&quot;;&#xD;&#xA;		&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" />
+      <EVENT KEY="22ad8de2-47bd-4c5b-8b98-69f74aa2149c" EVENT_NAME="Process Kill" EVENT_TYPE="24" STOPIFERR="0" KILL_PROCESS="" PRE_CODE="using System;&#xD;&#xA;using System.IO;&#xD;&#xA;using System.Collections;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Data;&#xD;&#xA;using System.Text;&#xD;&#xA;&#xD;&#xA;public partial class CustomScript&#xD;&#xA;{&#xD;&#xA;	public void PreRun(EvPPEntry_ProcessKill EntryData)&#xD;&#xA;	{&#xD;&#xA;		EntryData.KillByProcessName = &quot;excel.EXE&quot;;&#xD;&#xA;		&#xD;&#xA;	}&#xD;&#xA;}&#xD;&#xA;" />
+    </EVENTLISTS>
+  </TASKGROUP>
+  <TASKGROUP TYPE="EXCEPTION" />
+  <TASKGROUP TYPE="FINALLY" />
+  <VARIABLES />
+</TASKSCRIPT>
